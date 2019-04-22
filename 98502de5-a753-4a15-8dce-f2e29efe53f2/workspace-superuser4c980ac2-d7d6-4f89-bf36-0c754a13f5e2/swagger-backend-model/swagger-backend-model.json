@@ -1,0 +1,533 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Shipment",
+    "version": "1.0.0",
+    "title": "Shipment API"
+  },
+  "basePath": "/v1",
+  "tags": [
+    {
+      "name": "Shipment",
+      "description": "Shipments CRUD APIs"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/shipment": {
+      "post": {
+        "tags": [
+          "Shipment"
+        ],
+        "summary": "Add a new shipment",
+        "description": "Api to create a new shipment",
+        "operationId": "createShipment",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Sequence"
+            }
+          }
+        ],
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Shipment"
+        ],
+        "summary": "Update an existing shipment",
+        "description": "",
+        "operationId": "updateShipment",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Sequence"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Shipment not found"
+          },
+          "405": {
+            "description": "Validation exception"
+          }
+        }
+      }
+    },
+    "/shipment/{shipmentId}": {
+      "get": {
+        "tags": [
+          "Shipment"
+        ],
+        "summary": "Find shipment",
+        "description": "Returns a shipment detail by shipment Id",
+        "operationId": "getShipment",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "shipmentId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Sequence"
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Shipment not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Shipment"
+        ],
+        "summary": "Deletes a shipment",
+        "description": "",
+        "operationId": "deleteShipment",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "header",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "shipmentId",
+            "in": "path",
+            "description": "shipment id to delete",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "shipment not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Sequence": {
+      "type": "object",
+      "required": [
+        "shipmentNumber",
+        "shipmentTypeCode"
+      ],
+      "properties": {
+        "shipmentId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "shipmentNumber": {
+          "type": "string"
+        },
+        "shipmentTypeCode": {
+          "type": "string"
+        },
+        "paymentTermCode": {
+          "type": "string"
+        },
+        "receivedLocationCode": {
+          "type": "string"
+        },
+        "originTariffPointCode": {
+          "type": "string"
+        },
+        "destinationTariffPointCode": {
+          "type": "string"
+        },
+        "originBranchCode": {
+          "type": "string"
+        },
+        "destinationBranchCode": {
+          "type": "string"
+        },
+        "deliveryDeadlineCode": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "receivedDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "grossWeightMaxUOMCode": {
+          "type": "string"
+        },
+        "volumeMaximum": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "volumeMaximumUnitMeasurement": {
+          "type": "string"
+        },
+        "statusCode": {
+          "type": "string"
+        },
+        "customerStatedWeightMeasurementUnit": {
+          "type": "string"
+        },
+        "actualWeightMeasurementCode": {
+          "type": "string"
+        },
+        "ratedWeightMeasurementCode": {
+          "type": "string"
+        },
+        "dimensionalWeightMeasurementCode": {
+          "type": "string"
+        },
+        "volumeWeightMeasurementUnit": {
+          "type": "string"
+        },
+        "importGatewayCode": {
+          "type": "string"
+        },
+        "exportGatewayCode": {
+          "type": "string"
+        },
+        "statusLocationCode": {
+          "type": "string"
+        },
+        "dataCompleteStatusCode": {
+          "type": "string"
+        },
+        "loadPortCode": {
+          "type": "string"
+        },
+        "dischargePortCode": {
+          "type": "string"
+        },
+        "cargoReceiptCountryCode": {
+          "type": "string"
+        },
+        "cargoReceiptStateCode": {
+          "type": "string"
+        },
+        "cargoReceiptCityCode": {
+          "type": "string"
+        },
+        "cargoReceiptUNLOCPointCode": {
+          "type": "string"
+        },
+        "cargoDeliveryCountryCode": {
+          "type": "string"
+        },
+        "cargoDeliveryStateCode": {
+          "type": "string"
+        },
+        "cargoDeliveryCityCode": {
+          "type": "string"
+        },
+        "cargoDeliveryUNLOCPointCode": {
+          "type": "string"
+        },
+        "invoiceStatusCode": {
+          "type": "string"
+        },
+        "customsStatusCode": {
+          "type": "string"
+        },
+        "productCode": {
+          "type": "string"
+        },
+        "originServiceTypeCode": {
+          "type": "string"
+        },
+        "destinationServiceTypeCode": {
+          "type": "string"
+        },
+        "billOfLadingTypeCode": {
+          "type": "string"
+        },
+        "countryOfManufactureCode": {
+          "type": "string"
+        },
+        "sourceShipmentNumber": {
+          "type": "string"
+        },
+        "originEnteredBranchCode": {
+          "type": "string"
+        },
+        "destinationEnteredBranchCode": {
+          "type": "string"
+        },
+        "dangerousGoodsCargoPassengerCode": {
+          "type": "string"
+        },
+        "deliveryDeadlineDatetime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "customerStatedPieceCount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "carrierPieceCount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "customerStatedWeight": {
+          "type": "integer",
+          "format": "double"
+        },
+        "actualWeight": {
+          "type": "integer",
+          "format": "double"
+        },
+        "ratedWeight": {
+          "type": "integer",
+          "format": "double"
+        },
+        "dimensionalWeight": {
+          "type": "integer",
+          "format": "double"
+        },
+        "dimensionalFactor": {
+          "type": "integer",
+          "format": "double"
+        },
+        "volume": {
+          "type": "integer",
+          "format": "double"
+        },
+        "dataEntryMode": {
+          "type": "string"
+        },
+        "enteredbyUser": {
+          "type": "string"
+        },
+        "federalMaritimeCommissionIndicator": {
+          "type": "boolean",
+          "default": false
+        },
+        "freightAvailableDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "requiredOnsiteDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "numberofOriginals": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "originBranchCutoffDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "exportDocsFinalReceiptDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "requiredShipDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "forwarderCargoReceiptIssueDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "exportPickupReadyDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "cargoArrivalNoticeDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "deliveryOrderDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "importPickupReadyDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "freetimeExpirationDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "freeCalendarDays": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "shipmentAtDestinationDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdby": {
+          "type": "string"
+        },
+        "createdDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedby": {
+          "type": "string"
+        },
+        "updatedDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "pieceLine": {
+          "$ref": "#/definitions/PieceLine"
+        },
+        "shipmentParty": {
+          "$ref": "#/definitions/ShipmentParty"
+        },
+        "shipmentPartyContact": {
+          "$ref": "#/definitions/ShipmentPartyContact"
+        }
+      }
+    },
+    "ShipmentPartyContact": {
+      "type": "object",
+      "properties": {
+        "contactId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "shipmentPartyId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "typeCode": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "Category"
+      }
+    },
+    "ShipmentParty": {
+      "type": "object",
+      "properties": {
+        "shipmentPartyId": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "roleCode": {
+          "type": "string"
+        },
+        "securityCheckStatusCode": {
+          "type": "string"
+        },
+        "securityCheckTimestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "accountNumber": {
+          "type": "string"
+        },
+        "addressTypeCode": {
+          "type": "string"
+        },
+        "addressIDCode": {
+          "type": "string"
+        },
+        "addressEffectiveDate": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "PieceLine": {
+      "type": "object",
+      "properties": {
+        "pieceLineID": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "pieceLineDetail": {
+          "type": "string"
+        },
+        "pieceLineDetailHarmonizedCode": {
+          "type": "string"
+        },
+        "dangerousGoodsIndicator": {
+          "type": "boolean",
+          "default": false
+        },
+        "value": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "valueCurrency": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "remark": {
+          "type": "string"
+        },
+        "markAndNumber": {
+          "type": "string"
+        },
+        "indicator": {
+          "type": "boolean",
+          "default": false
+        },
+        "weight": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "weightUOMCode": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
